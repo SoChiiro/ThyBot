@@ -6,10 +6,6 @@ const { EmbedBuilder } = require("discord.js");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const { AttachmentBuilder } = require("discord.js");
-const { createCanvas, loadImage } = require("canvas");
-const path = require("path");
-
 require("dotenv").config();
 const TOKEN = process.env.BOT_TOKEN;
 
@@ -43,8 +39,6 @@ const commands = {
   facts: "Affiche un fait aléatoire",
   help: "Affiche cette liste de commandes.",
   love: "Ship deux personnes pour voir leur compatibilité moooooooo",
-  // dodo: "Vous trouverez une excuse pour ne pas venir, mais à la dodo",
-  // PCP: "//////////////////////////////",
 };
 
 const courage = [
@@ -319,10 +313,11 @@ commandHandlers.thybot = (message, args) => {
     "Demande à Nana",
     "waya",
     "Demande à Chat GPT",
-    "Tg",
     "Evidemment",
     "C'est sur !",
-    "Certainement, je t'en dis pas plus",
+    "Mouais je suis pas sûr",
+    "Wallah oui",
+    "Wallah non",
   ];
   const randomIndex = Math.floor(Math.random() * answers.length);
   message.channel.send(`${message.author} **→** ${answers[randomIndex]}`);
