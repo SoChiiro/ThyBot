@@ -1,8 +1,8 @@
-# DiscordBot
+# DiscordBot : ThyBot REBORN
 
 ![ThyKing](https://user-images.githubusercontent.com/73226823/211423713-9d9cf464-8400-4f1f-8f7a-64bef80420fc.jpg)
+(I'm thy bot)
 
-## Hello i'm ThyBot !
 ### With me you can : 
 
 - **news**: "Affiche les prochaines nouveautés du bot",
@@ -16,3 +16,6 @@
 - **facts**: "Affiche un fait aléatoire",
 - **help**: "Affiche cette liste de commandes.",
 - **love**: "Ship deux personnes pour voir leur compatibilité moooooooo",
+
+
+All right reserved
