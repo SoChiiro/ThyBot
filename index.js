@@ -35,10 +35,11 @@ const commands = {
   roll6: "Lance un dé à 6 faces",
   roll20: "Lance un dé à 20 faces",
   meme: "Affiche un mème aléatoire",
-  thybot: "Pose une question à ThyBot",
   facts: "Affiche un fait aléatoire",
-  help: "Affiche cette liste de commandes.",
   love: "Ship deux personnes pour voir leur compatibilité moooooooo",
+  fight: "Fait combattre deux personnes dans un combat épique",
+  thybot: "Pose une question à ThyBot",
+  help: "Affiche cette liste de commandes.",
 };
 
 const courage = [
@@ -264,11 +265,12 @@ commandHandlers.love = async (message, args) => {
   }
 
   const [firstUser, secondUser] = args;
-  const randomPercentage = Math.floor(Math.random() * 101);
+  let randomPercentage = Math.floor(Math.random() * 101);
 
   console.log(
     `💘 Compatibilité entre ${firstUser} et ${secondUser} : ${randomPercentage}%`
   );
+
   const progressBar = (percentage) => {
     const full = "🟥";
     const empty = "⬛";
@@ -280,6 +282,52 @@ commandHandlers.love = async (message, args) => {
     `💞 **Analyse de la compatibilité entre ${firstUser} et ${secondUser}...**`
   );
 
+  // Définition des groupes de noms qui donnent 100%
+  const specialNames1 = [
+    "Thy",
+    "SoChiiro",
+    "Thomas",
+    "T",
+    "thy",
+    "sochiiro",
+    "thomas",
+    "t",
+  ];
+  const specialNames2 = [
+    "Ryuk",
+    "Riouque",
+    "Myriam",
+    "ryuk",
+    "riouque",
+    "myriam",
+  ];
+  const specialNames3 = [
+    "Jey",
+    "Jeremi",
+    "Jérémi",
+    "Jeyo",
+    "J",
+    "jey",
+    "jeremi",
+    "jérémi",
+    "jeyo",
+    "j",
+  ];
+
+  // Vérification si un utilisateur appartient à `specialNames1` et l'autre à `specialNames2`
+  if (
+    (specialNames1.includes(firstUser) && specialNames2.includes(secondUser)) ||
+    (specialNames2.includes(firstUser) && specialNames1.includes(secondUser))
+  ) {
+    randomPercentage = 100;
+    console.log(`${firstUser} et ${secondUser} sont ensemble !`);
+  } else if (
+    (specialNames1.includes(firstUser) && specialNames3.includes(secondUser)) ||
+    (specialNames3.includes(firstUser) && specialNames1.includes(secondUser))
+  ) {
+    randomPercentage = 0;
+  }
+
   setTimeout(() => {
     let response = `💖 **Résultat final :**\n💑 **${firstUser}** ❤️ **${secondUser}**\n\n`;
     response += `💘 Compatibilité : **${randomPercentage}%**\n`;
@@ -290,7 +338,7 @@ commandHandlers.love = async (message, args) => {
     } else if (randomPercentage >= 80) {
       response += `🔥 **Shessssssssssssssssssssh** 💓`;
     } else if (randomPercentage >= 50) {
-      response += `😏 **Oh.... Pas mal ** 💫`;
+      response += `😏 **Oh.... Pas mal** 💫`;
     } else if (randomPercentage >= 30) {
       response += `🤔 **Bon bah psartek hein**`;
     } else {
@@ -299,6 +347,79 @@ commandHandlers.love = async (message, args) => {
 
     suspenseMessage.edit(response);
   }, 2000);
+};
+
+commandHandlers.fight = async (message, args) => {
+  if (args.length !== 2) {
+    return message.channel.send("🥊 **Il faut mentionner deux combattants !**");
+  }
+
+  const [fighter1, fighter2] = args;
+  let fighter1HP = 100;
+  let fighter2HP = 100;
+
+  const attacks = [
+    "💥 Coup de poing",
+    "🦶 Coup de pied",
+    "🔥 Uppercut enflammé",
+    "⚡ Coup de genou foudroyant",
+    "💨 Esquive éclair",
+    "🗡️ Attaque tranchante",
+    "🔄 Contre-attaque",
+    "🎯 Coup précis",
+    // attaque d'animé
+    "💫 Kamehameha",
+    "🌪️ Rasengan",
+    "⚔️ Chidori",
+    "🌌 Genjutsu",
+    "🌀 Rasen Shuriken",
+    "🌌 Big Bang Attack",
+    // Attaqe de jeux vidéo
+    "🎮 Attaque spéciale",
+    "🕹️ Attaque ultime",
+    "💣 Attaque explosive",
+    "⚔️ Attaque de zone",
+    // Attaque de zone
+  ];
+
+  let fightMessage = await message.channel.send(
+    `🥊 **COMBAT ENTRE ${fighter1} ET ${fighter2} !** 🥊\n🚀 **Préparez-vous !**`
+  );
+
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  while (fighter1HP > 0 && fighter2HP > 0) {
+    const attacker = Math.random() < 0.5 ? fighter1 : fighter2;
+    const defender = attacker === fighter1 ? fighter2 : fighter1;
+    const attack = attacks[Math.floor(Math.random() * attacks.length)];
+    const damage = Math.floor(Math.random() * 20) + 10; // Dégâts entre 10 et 30
+
+    if (attacker === fighter1) {
+      fighter2HP = Math.max(0, fighter2HP - damage);
+    } else {
+      fighter1HP = Math.max(0, fighter1HP - damage);
+    }
+
+    await fightMessage.edit(
+      `🥊 **${attacker} attaque !**\n` +
+        `${attack} sur ${defender} ! (-${damage} HP)\n\n` +
+        `❤️ ${fighter1}: **${fighter1HP} HP**\n` +
+        `💙 ${fighter2}: **${fighter2HP} HP**`
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
+
+  const winner = fighter1HP > 0 ? fighter1 : fighter2;
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  await fightMessage.edit(
+    `🥊 **${winner} a gagné le combat !** 🎉\n\n` +
+      `❤️ ${fighter1}: **${fighter1HP} HP**\n` +
+      `💙 ${fighter2}: **${fighter2HP} HP**`
+  );
+  // Annonce du vainqueur
+  message.channel.send(`🏆 **VICTOIRE DE ${winner} !** 🎉🥊`);
 };
 
 commandHandlers.thybot = (message, args) => {
