@@ -16,33 +16,33 @@ module.exports = {
     let fighter2HP = 100;
 
     const attacks = [
-      //   "💥 Coup de poing",
-      //   "🦶 Coup de pied",
-      //   "🔥 Uppercut enflammé",
-      //   "⚡ Coup de genou foudroyant",
-      //   "💨 Esquive éclair",
-      //   "🗡️ Attaque tranchante",
-      //   "🔄 Contre-attaque",
-      //   "🎯 Coup précis",
-      //   "💫 Kamehameha",
-      //   "🌪️ Rasengan",
-      //   "⚔️ Chidori",
-      //   "🌌 Genjutsu",
+      "💥 Coup de poing",
+      "🦶 Coup de pied",
+      "🔥 Uppercut enflammé",
+      "⚡ Coup de genou foudroyant",
+      "💨 Esquive éclair",
+      "🗡️ Attaque tranchante",
+      "🔄 Contre-attaque",
+      "🎯 Coup précis",
+      "💫 Kamehameha",
+      "🌪️ Rasengan",
+      "⚔️ Chidori",
+      "🌌 Genjutsu",
       "🌀 Rasen Shuriken",
       "🌌 Ultra Big Bang Kamehameha",
       "🌌 Stardust Breaker",
       "💨 Hollow Purple",
-      //   "🎮 Attaque spéciale",
-      //   "🕹️ Attaque ultime",
-      //   "💣 Attaque explosive",
-      //   "⚔️ Attaque de zone",
-      //   "🌀 Attaque éclair",
-      //   "🌪️ Attaque cyclonique",
-      //   "💥 Attaque de choc",
-      //   "🔥 Attaque de feu",
-      //   "❄️ Attaque de glace",
-      //   "⚡ Attaque électrique",
-      //   "🌊 Attaque aquatique",
+      "🎮 Attaque spéciale",
+      "🕹️ Attaque ultime",
+      "💣 Attaque explosive",
+      "⚔️ Attaque de zone",
+      "🌀 Attaque éclair",
+      "🌪️ Attaque cyclonique",
+      "💥 Attaque de choc",
+      "🔥 Attaque de feu",
+      "❄️ Attaque de glace",
+      "⚡ Attaque électrique",
+      "🌊 Attaque aquatique",
     ];
 
     const finalAttacks = [
@@ -61,18 +61,20 @@ module.exports = {
     //   "💨 Hollow Purple": "../assets/hollowPurple.gif",
     // };
 
+    const path = require("path");
+
     const finalGifs = {
-      "💫 Kamehameha": path.join(__dirname, "../../assets/kamehameha.gif"),
-      "⚔️ Chidori": path.join(__dirname, "../../assets/chidori.gif"),
-      "🌀 Stardust Breaker": path.join(
+      "💫 Kamehameha": path.resolve(__dirname, "../asset/kamehameha.gif"),
+      "⚔️ Chidori": path.resolve(__dirname, "../asset/chidori.gif"),
+      "🌀 Stardust Breaker": path.resolve(
         __dirname,
-        "../../assets/Stardustbreaker.webp"
+        "../asset/StardustBreaker.webp"
       ),
-      "🌌 Ultra Big Bang Kamehameha": path.join(
+      "🌌 Ultra Big Bang Kamehameha": path.resolve(
         __dirname,
-        "../../assets/UBK.gif"
+        "../asset/UBK.gif"
       ),
-      "💨 Hollow Purple": path.join(__dirname, "../../assets/hollowPurple.gif"),
+      "💨 Hollow Purple": path.resolve(__dirname, "../asset/hollowPurple.gif"),
     };
 
     let fightMessage = await message.channel.send(
