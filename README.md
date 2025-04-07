@@ -3,7 +3,7 @@
 ![ThyKing](https://user-images.githubusercontent.com/73226823/211423713-9d9cf464-8400-4f1f-8f7a-64bef80420fc.jpg)
 (I'm thy bot)
 
-### With me you can : 
+### With me you can :
 
 - **news**: "Affiche les prochaines nouveautés du bot",
 - **ping**: "Vérifie si le bot est en ligne.",
@@ -15,7 +15,7 @@
 - **thybot**: "Pose une question à ThyBot",
 - **facts**: "Affiche un fait aléatoire",
 - **help**: "Affiche cette liste de commandes.",
+- **fight** : "Permet deux joueurs de s'affronter"
 - **love**: "Ship deux personnes pour voir leur compatibilité moooooooo",
-
 
 All right reserved
